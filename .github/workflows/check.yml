@@ -16,5 +16,5 @@ jobs:
       - name: Every switch config has a hostname
         run: |
           for f in switches/*.cfg; do
-            grep -qi "^switch hostname" "$f" || { echo "No hostname in $f"; exit 1; }
+            grep -qi "^ hostname" "$f" || { echo "No hostname in $f"; exit 1; }
           done
