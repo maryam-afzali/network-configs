@@ -1,0 +1,16 @@
+name: Config check
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Every switch config has a hostname
+        run: |
+          for f in switches/*.cfg; do
+            [ -e "$f" ] || { echo "No config files found"; exit 1; }
+            grep -qi "^hostname" "$f" || { echo "No hostname in $f"; exit 1; }
+          done
