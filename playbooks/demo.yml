@@ -6,5 +6,5 @@
     - name: Ensure VLAN 100 line exists
       ansible.builtin.lineinfile:
         path: /tmp/demo.cfg
-        line: "vlan 100"
+        line: "vlan 200"
         create: true
