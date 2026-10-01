@@ -1,0 +1,12 @@
+name: Ansible demo
+on: workflow_dispatch
+jobs:
+  demo:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: pipx install ansible-core
+      - name: Run 1
+        run: ansible-playbook playbooks/demo.yml
+      - name: Run 2
+        run: ansible-playbook playbooks/demo.yml
