@@ -14,3 +14,11 @@ jobs:
             [ -e "$f" ] || { echo "No config files found"; exit 1; }
             grep -qi "^hostname" "$f" || { echo "No hostname in $f"; exit 1; }
           done
+  deploy-demo:
+     needs: check
+     if: github.ref == 'refs/heads/master' && github.event_name == 'push'
+     runs-on: ubuntu-latest
+     steps:
+       - uses: actions/checkout@v4
+       - run: pipx install ansible-core
+       - run: ansible-playbook playbooks/demo.yml       
