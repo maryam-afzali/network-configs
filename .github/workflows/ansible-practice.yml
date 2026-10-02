@@ -1,0 +1,14 @@
+name: Ansible practice
+on: workflow_dispatch
+jobs:
+  practice:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: pipx install ansible-core
+      - name: Run playbook
+        run: ansible-playbook -i inventory/hosts.yml playbooks/configs.yml
+      - name: Show results
+        run: |
+          cat /tmp/configs/sw1.cfg
+          cat /tmp/configs/sw2.cfg
