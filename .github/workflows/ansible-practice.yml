@@ -8,8 +8,10 @@ jobs:
       - run: pipx install ansible-core
       - name: Dry run (check mode)
         run: ansible-playbook -i inventory/hosts.yml playbooks/configs.yml --check --diff
-      - name: Run playbook
+      - name: Run 1
         run: ansible-playbook -i inventory/hosts.yml playbooks/configs.yml
+      - name: Run 2
+        run: ansible-playbook -i inventory/hosts.yml playbooks/configs.yml  
       - name: Show results
         run: |
           cat /tmp/configs/sw1.cfg
