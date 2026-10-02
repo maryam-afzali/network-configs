@@ -12,3 +12,4 @@ jobs:
         run: |
           cat /tmp/configs/sw1.cfg
           cat /tmp/configs/sw2.cfg
+          cat /tmp/configs/sw3.cfg
