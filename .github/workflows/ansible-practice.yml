@@ -6,6 +6,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - run: pipx install ansible-core
+      - name: Dry run (check mode)
+        run: ansible-playbook -i inventory/hosts.yml playbooks/configs.yml --check --diff
       - name: Run playbook
         run: ansible-playbook -i inventory/hosts.yml playbooks/configs.yml
       - name: Show results
