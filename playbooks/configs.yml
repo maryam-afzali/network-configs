@@ -1,0 +1,13 @@
+- name: Build switch configs
+  hosts: switches
+  gather_facts: false
+  tasks:
+    - name: Create output folder
+      ansible.builtin.file:
+        path: /tmp/configs
+        state: directory
+
+    - name: Render config from template
+      ansible.builtin.template:
+        src: switch.cfg.j2
+        dest: "/tmp/configs/{{ inventory_hostname }}.cfg"
