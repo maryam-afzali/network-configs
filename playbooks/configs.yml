@@ -9,5 +9,5 @@
 
     - name: Render config from template
       ansible.builtin.template:
-        src: switch.cfg.j2
+        src: switch.cfg.j3
         dest: "/tmp/configs/{{ inventory_hostname }}.cfg"
