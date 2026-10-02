@@ -11,3 +11,9 @@
       ansible.builtin.template:
         src: switch.cfg.j2
         dest: "/tmp/configs/{{ inventory_hostname }}.cfg"
+      notify: Save config
+
+  handlers:
+    - name: Save config
+      ansible.builtin.debug:
+        msg: "{{ inventory_hostname }}: config changed, saving (like copy run start)"
