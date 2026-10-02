@@ -1,0 +1,17 @@
+name: Ansible dry run
+on:
+  pull_request:
+    paths:
+      - 'inventory/**'
+      - 'playbooks/**'
+jobs:
+  dry-run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - run: pipx install ansible-core
+      - name: Syntax check
+        run: ansible-playbook -i inventory/hosts.yml playbooks/configs.yml --syntax-check
+      - name: Dry run
+        run: ansible-playbook -i inventory/hosts.yml playbooks/configs.yml --check --diff
